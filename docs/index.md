@@ -3,22 +3,20 @@ hide:
   - navigation
 ---
 
-# Profilage des chauffeurs (command. Heetch)
-
-## **Introduction**
+## **Prétraitement des données**
 
 
 
-## **Préparation des données**
+## **Entraînement du modèle**
 
 ```r
 # Importer les bibliothèques
 
 ```
 
-## **Étude exploratoire des données**
+## **Fine-tuning**
 
 
 
-## **Implémentation d’un modèle de réseau de neurones**
+## **Génération de résumé**
 
