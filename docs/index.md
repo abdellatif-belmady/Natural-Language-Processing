@@ -9,10 +9,7 @@ hide:
 
 ## **Entraînement du modèle**
 
-```r
-# Importer les bibliothèques
 
-```
 
 ## **Fine-tuning**
 
