@@ -62,9 +62,9 @@ Pour plus d'informations, veuillez vous référer à la [Huggingface documentati
 
 ### **Entrer le texte à résumer**
 
-Maintenant que notre modèle est prêt, nous pouvons commencer à choisir le texte que nous voulons résumer. Nous proposons de choisir le premier abstract dans notre base de données :
+Maintenant que notre modèle est prêt, nous pouvons commencer à choisir les textes que nous voulons résumer. Nous proposons de choisir les 4 premiers abstracts dans notre base de données :
 
-Nous définissons notre variable :
+Nous définissons nos variables :
 
 ```py
 text_1 = data["abstracts"][0]
@@ -101,13 +101,13 @@ print(text_4)
 
 ### **Génération de résumé**
 
-Enfin, nous pouvons commencer à résumer le texte entré. Ici, nous déclarons la longueur minimale et la longueur maximale que nous souhaitons pour la sortie du résumé, et nous désactivons également l'échantillonnage pour générer un résumé fixe. Nous pouvons le faire en exécutant la commande suivante :
+Enfin, nous pouvons commencer à résumer les textes entrés. Ici, nous déclarons la longueur minimale et la longueur maximale que nous souhaitons pour la sortie des résumés, et nous désactivons également l'échantillonnage pour générer des résumés fixes. Nous pouvons le faire en exécutant les commandes suivantes :
 
 ```py
 summary_text_1 = summarizer(text, max_length=100, min_length=5, do_sample=False)[0]['summary_text']
 print(summary_text_1)
 ```
-Voilà ! Nous obtenons le résumé de notre texte :
+Voilà ! Nous obtenons le résumé de premier texte :
 
 ??? success "Output"
     Most people in rural areas in South Africa rely on untreated drinking groundwater sources and pit latrine sanitations . Outbreaks of diarrhoea (69%) and cholera (14%) were common. Sixty percent were willing to use treated faecal sludge in agriculture .
@@ -116,6 +116,7 @@ Voilà ! Nous obtenons le résumé de notre texte :
 summary_text_2 = summarizer(text_2, max_length=100, min_length=5, do_sample=False)[0]['summary_text']
 print(summary_text_2)
 ```
+Voilà ! Nous obtenons le résumé de deuxième texte :
 
 ??? success "Output"
     The aim of this study was to highlight the importance of socioeconomic and psychosocial factors in the adoption of sustainable agricultural practices (SAPs) in banana farm production . Economic status, watching agricultural training programs, newspaper and radio awareness campaigns, perceptions of sustainable agriculture and the feasibility of SAPs were significant factors .
@@ -125,6 +126,8 @@ summary_text_3 = summarizer(text_3, max_length=100, min_length=5, do_sample=Fals
 print(summary_text_3)
 ```
 
+Voilà ! Nous obtenons le résumé de troisième texte :
+
 ??? success "Output"
     Heavy metal and metalloid (HMM) contamination can result in adverse health effects for humans . In 2018, industrial slag and hazardous levels of soil contamination were detected in West Atlanta . Home gardeners were more likely to recognize HMM health effects than community gardeners .
 
@@ -133,6 +136,8 @@ print(summary_text_3)
 summary_text_4 = summarizer(text_4, max_length=100, min_length=5, do_sample=False)[0]['summary_text']
 print(summary_text_4)
 ```
+Voilà ! Nous obtenons le résumé de quatrième texte :
+
 ??? success "Output"
     Waste management has become pertinent in urban regions, along with rapid population growth . The current ways of managing waste, such as refuse collection and recycling, are failing to minimise waste in cities . With urban populations growing worldwide, there is the challenge of increased pressure to import food from rural areas .
 
