@@ -3,6 +3,8 @@ hide:
   - navigation
 ---
 
+# Natural Language Processing Project
+
 ## **Introduction**
 ***Abstractive Summarization*** est une tâche du Natural Language Processing (NLP) qui vise à générer un résumé concis d'un texte source. Contrairement au ***extractive summarization***, Abstractive Summarization ne se contente pas de copier les phrases importantes du texte source, mais peut également en créer de nouvelles qui sont pertinentes, ce qui peut être considéré comme une paraphrase. Abstractive Summarization donne lieu à un certain nombre d'applications dans différents domaines, des livres et de la littérature, à la science et à la R&D, à la recherche financière et à l'analyse de documents juridiques.
 
