@@ -142,7 +142,89 @@ Voilà ! Nous obtenons le résumé de quatrième texte :
     Waste management has become pertinent in urban regions, along with rapid population growth . The current ways of managing waste, such as refuse collection and recycling, are failing to minimise waste in cities . With urban populations growing worldwide, there is the challenge of increased pressure to import food from rural areas .
 
 
-## **Fine-tuning t5-base**
+## **Fine-tuning SimpleT5**
+
+```py
+!pip install simplet5
+```
+
+```py
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+path = "/content/sample_data/AgrSmall.json"
+df = pd.read_json(path)
+df.head()
+```
+
+```py
+# simpleT5 expects dataframe to have 2 columns: "source_text" and "target_text"
+df = df.rename(columns={"titles":"target_text", "abstracts":"source_text"})
+df = df[['source_text', 'target_text']]
+
+# T5 model expects a task related prefix: since it is a summarization task, we will add a prefix "summarize: "
+df['source_text'] = "summarize: " + df['source_text']
+df
+```
+
+```py
+train_df, test_df = train_test_split(df, test_size=0.2)
+train_df.shape, test_df.shape
+```
+
+```py
+from simplet5 import SimpleT5
+
+model = SimpleT5()
+model.from_pretrained(model_type="t5", model_name="t5-base")
+model.train(train_df=train_df[:3000],
+            eval_df=test_df[:100], 
+            source_max_token_len=128, 
+            target_max_token_len=50, 
+            batch_size=8, max_epochs=3, use_gpu=True)
+```
+
+```py
+# let's load the trained model for inferencing:
+model.load_model("t5","/content/outputs/simplet5-epoch-0-train-loss-2.806-val-loss-2.5596", use_gpu=True)
+
+text_1 = data["abstracts"][0]
+text_2 = data["abstracts"][1]
+text_3 = data["abstracts"][2]
+text_4 = data["abstracts"][3]
+```
+
+```py
+model.predict(text_1)
+```
+
+??? success "Output"
+    ['latrine sludge management in Monontsha, Free State Province of South Africa. Key informant interviews and questionnaires']
+
+```py
+model.predict(text_2)
+```
+
+??? success "Output"
+    ['sustainable agriculture practices among banana production farmers in Pakistan: Evidence from LR and SEM']
+
+```py
+model.predict(text_3)
+```
+??? success "Output"
+    ['soil contamination from industrial slag and hazardous levels of metalloid (HMM) contamination in West Atlanta, Georgia. Community-engaged research']
+
+```py
+model.predict(text_4)
+```
+??? success "Output"
+    ['challenges and opportunities for organic waste utilisation and management through urban agriculture in the Durban South Basin, KwaZulu-Natal Province of South Africa']
+
+
+
+
+
+
 
 
 
